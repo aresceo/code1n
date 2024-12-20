@@ -1,6 +1,5 @@
 import time
-from telegram import Bot
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import telebot
 
 # La scritta ASCII che incollerai
 ascii_art = """                                                    
@@ -15,32 +14,24 @@ ascii_art = """
 
 # La scritta ASCII del canale Telegram
 ascii_channel = """     
-                                                                               ██     █                             
-                                                            █                   ██  ██                              
-                                                           ██                   ██  ██                              
-                                                           ██                   ██  ██                              
-           ███    ███                      ██   ████     ████████               ██  ██                              
-    ███   █ ███  ████ █    ███      ████    ██    ███  █████████    ███     ███ ██  ██ ████      ████   ███  ████   
-   █ ███     ███ █████    █ ███    █ ███  █ ██     ████    ██      █ ███   ████████████ ███  █  █ ███  █ ████ ████ █
-  █   ███     ███  ██    █   ███  █   ████  ██      ██     ██     █   ███ ██   ████ ██   ████  █   ████   ██   ████ 
- ██    ███     ███      ██    █████         ██      ██     ██    ██    █████    ██  ██    ██  ██    ██    ██    ██  
- ████████     █ ███     ████████ ██         ██      ██     ██    ████████ ██    ██  ██    ██  ██    ██    ██    ██  
- ███████     █   ███    ███████  ██         ██      ██     ██    ███████  ██    ██  ██    ██  ██    ██    ██    ██  
- ██         █     ███   ██       ██         ██      ██     ██    ██       ██    ██  ██    ██  ██    ██    ██    ██  
- ████    █ █       ███ █████    ████     █   ███████ ██    ██    ████    ███    ██  ██    ██  ██    ██    ██    ██  
-  ███████ █         ███  ███████  ███████     █████   ██    ██    ███████  █████     █████     █████ ██   ███   ███ 
-   █████                  █████    █████                           █████    ███       ███       ███   ██   ███   ███                                                                                                           
+  ▄▄▄▄▄        ▄▄▄▄      ▄▄▄▄▄▄▄▄ ███████ ████████   ▄█▄  ▄█▄   
+  ███  ██      ████    ▀██▄▄▄█████████████ ██▄▄█████   ██   ███  
+  ██    ██    ▄██▄  ▄███████████████▀████████████████████  █████ 
+ ██     ██   ▄██▀ ██   ▀███▀ ███████████  ██████████  ▄████████
+ ████████   ▄██▀  ██▄▄█▀    ██▀   ██████  ▄██████████▄ ███████
+██        ██    ██ ███████▄   ██████ █████ ██████████ ▄██▀   
+ ███▄   ███▄    ██ ██ ███▄ ▄█▀    ▀████  ███▄▄██████████      
+      ▀▀███▀   ▀▀▀  ██████████▄▄▄▄██▀  ▀███████████████▄ █     
 """
 
 # Funzione per cercare il tag nel canale Telegram
 def check_tag_in_channel(bot, chat_id, tag):
     try:
-        # Ottieni i messaggi recenti del canale
-        messages = bot.get_chat_history(chat_id, limit=100)  # Limita a 100 messaggi
-        for message in messages:
+        # Recupera i messaggi dal canale
+        for message in bot.get_chat_administrators(chat_id):
             if tag in message.text:
-                return True  # Il tag è stato trovato in uno dei messaggi
-        return False  # Il tag non è stato trovato
+                return True  # Se il tag è presente in uno dei messaggi
+        return False  # Se il tag non è trovato
     except Exception as e:
         print(f"Errore durante la ricerca del tag nel canale: {e}")
         return False
@@ -72,7 +63,7 @@ def main():
         chat_id = "-1002297768070"  # Sostituisci con il tuo ID del canale
 
         # Crea un oggetto bot
-        bot = Bot(token=bot_token)
+        bot = telebot.TeleBot(bot_token)
 
         # Verifica se il tag è presente nei messaggi
         tag_present = check_tag_in_channel(bot, chat_id, tag)
