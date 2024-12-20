@@ -3,14 +3,34 @@ import telebot
 
 # La scritta ASCII che incollerai
 ascii_art = """                                                    
-  ▄▄█▀▀▀█▄█ ▄▄█▀▀██▄ ▀███▀▀▀██▄ ▀███▀▀▀███▀████▀███▄   ▀███▀
-▄██▀     ▀███▀    ▀██▄ ██    ▀██▄ ██    ▀█  ██   ███▄    █  
-██▀       ▀█▀      ▀██ ██     ▀██ ██   █    ██   █ ███   █  
-██        ██        ██ ██      ██ ██████    ██   █  ▀██▄ █  
-██▄       ██▄      ▄██ ██     ▄██ ██   █  ▄ ██   █   ▀██▄█  
-▀██▄     ▄▀██▄    ▄██▀ ██    ▄██▀ ██     ▄█ ██   █     ███  
-  ▀▀█████▀  ▀▀████▀▀ ▄████████▀ ▄██████████████▄███▄    ██                                             
+ ▓█████▒██   ██▒ ▓█████  ▄████▄  █    ██ ▄▄▄█████▓ ▓█████▓█████▄  ▄▄▄▄    ▄▄▄      ███▄    █ 
+ ▓█   ▀▒▒ █ █ ▒░ ▓█   ▀ ▒██▀ ▀█  ██  ▓██▒▓  ██▒ ▓▒ ▓█   ▀▒██▀ ██▌▓█████▄ ▒████▄    ██ ▀█   █ 
+ ▒███  ░░  █   ░ ▒███   ▒▓█    ▄▓██  ▒██░▒ ▓██░ ▒░ ▒███  ░██   █▌▒██▒ ▄██▒██  ▀█▄ ▓██  ▀█ ██▒
+ ▒▓█  ▄ ░ █ █ ▒  ▒▓█  ▄▒▒▓▓▄ ▄██▓▓█  ░██░░ ▓██▓ ░  ▒▓█  ▄░▓█▄   ▌▒██░█▀  ░██▄▄▄▄██▓██▒  ▐▌██▒
+▒░▒████▒██▒ ▒██▒▒░▒████░▒ ▓███▀ ▒▒█████▓   ▒██▒ ░ ▒░▒████░▒████▓ ░▓█  ▀█▓▒▓█   ▓██▒██░   ▓██░
+░░░ ▒░ ▒▒ ░ ░▓ ░░░░ ▒░ ░░ ░▒ ▒  ░▒▓▒ ▒ ▒   ▒ ░░   ░░░ ▒░  ▒▒▓  ▒ ░▒▓███▀▒░▒▒   ▓▒█░ ▒░   ▒ ▒ 
+░ ░ ░  ░░   ░▒ ░░ ░ ░     ░  ▒  ░░▒░ ░ ░     ░    ░ ░ ░   ░ ▒  ▒ ▒░▒   ░ ░ ░   ▒▒ ░ ░░   ░ ▒░
+    ░   ░    ░      ░   ░        ░░░ ░ ░   ░          ░   ░ ░  ░  ░    ░   ░   ▒     ░   ░ ░ 
+░   ░   ░    ░  ░   ░   ░ ░        ░              ░   ░     ░     ░            ░           ░                                            
 """
+
+# Funzione per creare una sfumatura di verde.
+def green_gradient(ascii_art):
+    lines = ascii_art.split("\n")
+    num_lines = len(lines)
+    gradient_text = ""
+
+    for i, line in enumerate(lines):
+        # Calcoliamo il valore di verde basato sulla posizione della riga.
+        green_value = int(255 * (i / max(1, num_lines - 1)))
+        color_code = f"\033[38;2;0;{green_value};0m"  # Verde sfumato.
+        gradient_text += f"{color_code}{line}\033[0m\n"  # Reset colore alla fine di ogni riga.
+
+    return gradient_text
+
+# Applica la sfumatura di verde.
+print(green_gradient(ascii_art))
+
 
 # La scritta ASCII del canale Telegram
 ascii_channel = """     
