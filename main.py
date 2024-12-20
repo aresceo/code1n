@@ -55,30 +55,5 @@ def main():
         print(ascii_channel)
         print("Il mio canale Telegram @executedban")
 
-        # Chiedi all'utente di inserire un tag di Telegram
-        tag = input("Inserisci un tag di Telegram (ad esempio @hotchatita): ")
-
-        # Collega il bot e verifica il tag
-        bot_token = "7030942765:AAFZjTcFtRFzKWcUkNXkL9r7ePhIS5Xu8WY"  # Sostituisci con il token del tuo bot
-        chat_id = "-1002297768070"  # Sostituisci con il tuo ID del canale
-
-        # Crea un oggetto bot
-        bot = telebot.TeleBot(bot_token)
-
-        # Verifica se il tag è presente nei messaggi
-        tag_present = check_tag_in_channel(bot, chat_id, tag)
-
-        if tag_present:
-            print(f"Il tag {tag} è stato trovato nel canale!")
-        else:
-            print(f"Il tag {tag} NON è stato trovato nel canale.")
-
-    elif scelta == "2":
-        # Se l'utente sceglie "2", stampa un altro messaggio
-        print("Hai scelto 'Test'.")
-    else:
-        # Se l'input non è valido
-        print("Scelta non valida, prova di nuovo.")
-
 if __name__ == "__main__":
     main()
