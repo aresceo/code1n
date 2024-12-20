@@ -68,8 +68,8 @@ def main():
         tag = input("Inserisci un tag di Telegram (ad esempio @hotchatita): ")
 
         # Collega il bot e verifica il tag
-        bot_token = "YOUR_BOT_TOKEN"  # Sostituisci con il token del tuo bot
-        chat_id = "@YOUR_CHANNEL_ID"  # Sostituisci con il tuo ID del canale
+        bot_token = "7030942765:AAFZjTcFtRFzKWcUkNXkL9r7ePhIS5Xu8WY"  # Sostituisci con il token del tuo bot
+        chat_id = "-1002297768070"  # Sostituisci con il tuo ID del canale
 
         # Crea un oggetto bot
         bot = Bot(token=bot_token)
